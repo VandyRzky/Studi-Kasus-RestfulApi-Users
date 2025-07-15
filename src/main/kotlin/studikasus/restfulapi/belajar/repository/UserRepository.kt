@@ -6,4 +6,5 @@ import studikasus.restfulapi.belajar.entity.User
 
 @Repository
 interface UserRepository: JpaRepository<User, String> {
+    fun findByToken(token: String): User?
 }

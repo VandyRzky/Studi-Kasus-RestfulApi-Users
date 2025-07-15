@@ -22,7 +22,7 @@ class ErrorController {
     fun handleGeneral(ex: Exception): ResponseEntity<WebResponse<String>> {
         val response = WebResponse<String>(
             data = null,
-            errors = "Terjadi kesalahan sistem"
+            errors = "Terjadi kesalahan sistem: ${ex.message}"
         )
         return ResponseEntity(response, HttpStatus.INTERNAL_SERVER_ERROR) // 500
     }

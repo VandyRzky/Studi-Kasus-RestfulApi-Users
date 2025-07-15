@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import studikasus.restfulapi.belajar.entity.User
 import studikasus.restfulapi.belajar.model.RegisterUserRequest
+import studikasus.restfulapi.belajar.model.UserResponse
 import studikasus.restfulapi.belajar.repository.UserRepository
 
 @Service
@@ -37,5 +38,9 @@ class UserService (
 
         // 3. Simpan ke database
         return userRepository.save(user)
+    }
+
+    fun get(user: User):UserResponse{
+        return UserResponse(user.username, user.name)
     }
 }
