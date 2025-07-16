@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation
 import jakarta.validation.Validator
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import studikasus.restfulapi.belajar.entity.User
 import studikasus.restfulapi.belajar.model.RegisterUserRequest
 import studikasus.restfulapi.belajar.model.UpdateUserRequest
@@ -45,6 +46,7 @@ class UserService (
         return UserResponse(user.username, user.name)
     }
 
+    @Transactional
     fun update(user: User, request: UpdateUserRequest):UserResponse{
         var isUpdate = false
 

@@ -46,4 +46,12 @@ class AuthService (
         return TokenResponse(token, tokenExpiredAt)
     }
 
+    @Transactional
+    fun logout(user: User){
+        user.token = null
+        user.tokenExpireAt = null
+
+        userRepository.save(user)
+    }
+
 }
