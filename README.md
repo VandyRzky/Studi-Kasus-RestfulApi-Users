@@ -16,7 +16,7 @@
 - Response Body (Success):
 ```json
 {
-  "data": "OK"
+  "data": "Registrasi berhasil"
 }
 ```
 - Response Body (Failed):
@@ -67,16 +67,17 @@
 - Response Body (Success):
 ```json
 {
-  "data": {
-    "token": "TOKEN",
-    "expireAt": 111111111 // millisecond
+  "data":{
+    "username" : "contohUsername",
+    "name": "contoh Name"
   }
 }
 ```
 - Response Body (Failed):
 ```json
 {
-  "error": "Username/password wrong"
+  "data": null,
+  "error": "gagal melakukan update"
 }
 ```
 

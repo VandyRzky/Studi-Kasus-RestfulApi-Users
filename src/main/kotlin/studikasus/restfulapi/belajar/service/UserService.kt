@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import studikasus.restfulapi.belajar.entity.User
 import studikasus.restfulapi.belajar.model.RegisterUserRequest
+import studikasus.restfulapi.belajar.model.UpdateUserRequest
 import studikasus.restfulapi.belajar.model.UserResponse
 import studikasus.restfulapi.belajar.repository.UserRepository
 
@@ -42,5 +43,32 @@ class UserService (
 
     fun get(user: User):UserResponse{
         return UserResponse(user.username, user.name)
+    }
+
+    fun update(user: User, request: UpdateUserRequest):UserResponse{
+        var isUpdate = false
+
+        if (request.name.isNullOrBlank() && request.password.isNullOrBlank()){
+            throw IllegalArgumentException("Gagal melakukan update")
+        }
+
+        if (!request.name.isNullOrBlank() && request.name != user.name){
+            user.name = request.name
+            isUpdate = true
+        }
+
+        if (!request.password.isNullOrBlank() && request.password != user.password){
+            user.password = request.password
+            isUpdate = true
+        }
+
+        if (isUpdate){
+            userRepository.save(user)
+        }
+
+        return UserResponse(
+            name = user.name,
+            username = user.username
+        )
     }
 }
